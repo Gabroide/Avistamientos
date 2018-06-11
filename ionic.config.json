@@ -1,0 +1,8 @@
+{
+  "name": "birds",
+  "app_id": "66d99203",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

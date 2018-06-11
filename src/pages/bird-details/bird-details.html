@@ -1,0 +1,34 @@
+<!--
+  Generated template for the BirdDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar hideBackButton color="primary">
+    <ion-icon name="home" (click)="goHome()"></ion-icon>
+    <ion-title>Detalles del ave</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-thumbnail item-start>
+    <img [src]="imageOfBird">
+  </ion-thumbnail>
+  <h2>{{ nameOfBird }}</h2>
+  <p>{{ descriptionOfBird }}</p>
+  <button ion-button (click)="sighting()">Avistamiento</button>
+
+  <ion-list>
+    <a ion-item *ngFor="let sighting of sightingsOfBird">
+      <h3>{{ birdId }}</h3>
+      <!--<p>{{ sighting["place"] }}</p>
+      <p>{{ sighting["long"] }}</p>
+      <p>{{ sighting["lat"] }}</p>-->
+    </a>
+  </ion-list>
+
+</ion-content>
