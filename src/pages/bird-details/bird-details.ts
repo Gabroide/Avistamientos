@@ -44,6 +44,7 @@ export class BirdDetailsPage {
   }
 
   getBird() {
+    this.showLoader();
     this.http.get<any[]>(this.getBirdIdUrl + this.birdId)
       .subscribe((data) => {
           this.bird = data;
@@ -52,9 +53,11 @@ export class BirdDetailsPage {
             this.nameOfBird = bird.bird_name;
             this.descriptionOfBird = bird.bird_description;
             this.sightingsOfBird = bird.sightings;
+            this.loading.dismiss();
         })
         },
         err => {
+          this.loading.dismiss();
           console.log("Status: KO");
           console.log("Error en la petición.");
           this.showAlert("KO", "Error en la petición.");
@@ -63,7 +66,6 @@ export class BirdDetailsPage {
 
   sighting(id: number){
     this.showAlert("Nuevo AVISTAMIENTO", "Se va a introducir un nuevo avistamiento");
-    this.showLoader();
     this.navCtrl.push(BirdSightingPage, {
       birdId: this.birdId
     });

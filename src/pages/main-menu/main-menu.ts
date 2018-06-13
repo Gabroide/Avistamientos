@@ -48,17 +48,8 @@ export class MainMenuPage {
 
   logout(){
     this.showAlert("¡ATENCIÓN!", "Va a cerrar su sesión.");
-    this.showLoader();
     this.navCtrl.push(LoginPage);
 
-  }
-
-  showLoader(){
-    this.loading = this.loadingCtrl.create({
-      content: 'Exiting...'
-    });
-
-    this.loading.present();
   }
 
   showAlert(msg, subt){

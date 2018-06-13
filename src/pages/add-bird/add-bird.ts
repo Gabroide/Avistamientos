@@ -39,11 +39,11 @@ export class AddBirdPage {
     public loadingCtrl: LoadingController,
     private http: HttpClient) {
 
-    this.showContent();
+    //this.showContent();
 
   }
 
-  showContent() {
+  /*showContent() {
     let element = document.getElementById("content");
     let check = document.getElementById("check");
     if (this.sighted){
@@ -52,11 +52,12 @@ export class AddBirdPage {
     else {
       element.style.display='none';
     }
-  }
+  }*/
 
 
   // POST REQUEST
   sendBird(bird_name: string, bird_description: string){
+    this.showLoader();
     let sighPlace;
     if(this.sighted){
       sighPlace = this.place;
@@ -74,15 +75,15 @@ export class AddBirdPage {
           console.log("////////////////");
           console.log("SAVING DATA");
           console.log("Save status: true");
+          this.loading.dismiss();
           this.showAlert("NUEVA AVE", "Se ha añadoido una nueva ave: " + bird_name);
-          this.showLoader();
           this.navCtrl.push(BirdsListPage, {
             userId: this.idUser,
           });
         },
         err => {
+          this.loading.dismiss();
           this.showAlert("KO", "Error en la petición.");
-          this.showLoader();
           console.log("Status: KO");
           console.log("Error en la petición.")
         }

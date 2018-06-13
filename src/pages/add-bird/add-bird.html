@@ -17,16 +17,16 @@
 
   <form (submit)="sendBird(this.bird_name, this.bird_description, this.sighted)">
     <ion-label floating>Nombre del ave</ion-label>
-    <ion-input name="bird_name" [(ngModel)]="bird_name" type="text" required></ion-input>
+    <ion-input name="bird_name" type="text" required></ion-input>
     <ion-label floating>Descripción</ion-label>
-    <ion-input name="bird_description" [(ngModel)]="bird_description" type="text" required></ion-input>
+    <ion-input name="bird_description" type="text" required></ion-input>
 
     <ion-label>Ave avistada</ion-label>
-    <ion-checkbox [(ngModel)]="Yes" id="check"></ion-checkbox>
-    <div id="content" style="siaplay: none">
+    <ion-checkbox id="check"></ion-checkbox>
+    <!--<div id="content" style="display: none">-->
       <ion-label floating>Lugar</ion-label>
-      <ion-input name="place" [(ngModel)]="place" type="text"></ion-input>
-    </div>
+      <ion-input name="place" type="text"></ion-input>
+    <!--</div>-->
     <button ion-button block type="submit"></button>
   </form>
 

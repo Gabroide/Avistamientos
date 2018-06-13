@@ -46,22 +46,10 @@ export class BirdSightingPage {
     public loadingCtrl: LoadingController) {
 
     this.birdId = navParams.get("birdId");
-/*
-    this.geolocation.getCurrentPosition().then((resp)=>{
-      this.lat = resp.coords.latitude;
-      this.long = resp.coords.longitude;
-    }).catch((error) => {
-      console.log('Error: Se ha obtenido un error en el posicionamiento.');
-    });
-
-    let watch = this.geolocation.watchPosition();
-    watch.subscribe((data) => {
-      data.coords.latitude;
-      data.coords.longitude;
-    });*/
   }
 
   getUserPosition(){
+    this.showLoader();
     this.options = {
       enableHighAccuracy: true
     };
@@ -72,8 +60,10 @@ export class BirdSightingPage {
       this.long = pos.coords.longitude;
       console.log("lat:" + this.lat);
       console.log("long: " + this.long);
+      this.loading.dismiss();
     }, (error: PositionError) => {
       console.log("Error: " + error.message);
+      this.loading.dismiss();
     });
   }
 
@@ -83,6 +73,7 @@ export class BirdSightingPage {
 
   // POST REQUEST
   saveSightsing(place: string) {
+    this.showLoader();
     let birdId;
     this.http.post<BirdResponse>(this.sightingUrl,{
       "idAve": this.birdId,
@@ -99,10 +90,11 @@ export class BirdSightingPage {
           this.navCtrl.push(BirdDetailsPage, {
             birdId: this.birdId
           });
+          this.loading.dismiss();
           this.showAlert("Subida de datos", "Nuevo avistamiento guardado");
-          this.showLoader();
         },
         err => {
+          this.loading.dismiss();
           this.showAlert("KO", "Error en la petición");
           console.log("status: KO");
           console.log("Error en la petición.")

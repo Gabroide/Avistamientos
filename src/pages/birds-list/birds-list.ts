@@ -39,13 +39,16 @@ export class BirdsListPage {
   }
 
   getBirdsProvider(){
+    this.showLoader();
     console.log("////////////////////////");
     console.log("Reciving birds.");
     this.birdsProvider.getBirds(this.idUser).subscribe(
       (data) => {
         this.aves = data;
+        this.loading.dismiss();
         },
       (error) => {
+        this.loading.dismiss();
         this.showAlert("KO", "Error en la petición");
         console.log("Status: KO");
         console.log("Error en la petición.");
@@ -55,7 +58,6 @@ export class BirdsListPage {
 
   birdDetail(id: number, ave: string){
     this.showAlert("DETALLES AVE", "Se ha pedido mostrar el ave: " + ave);
-    this.showLoader();
 
     this.navCtrl.push(BirdDetailsPage, {
        birdId: id
